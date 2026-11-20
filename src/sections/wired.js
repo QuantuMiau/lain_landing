@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { env, hasWebGL } from '../utils/reducedMotion.js';
+import { setWiredDepth, glitchBurst } from '../utils/audio.js';
 
 /** Pinned 300vh section; scroll progress drives the WebGL camera. */
 export function initWired() {
@@ -30,6 +31,8 @@ export function initWired() {
   const lines = gsap.utils.toArray('.wired__line', section);
   let lastState = '';
   const st = { p: 0 };
+  let inView = false;
+  let calm = false;
 
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
@@ -40,10 +43,15 @@ export function initWired() {
       end: '+=300%',
       scrub: env.reduced ? true : 0.8,
       anticipatePin: 1,
+      onEnter: () => { inView = true; calm = false; setWiredDepth(st.p, true, false); },
+      onEnterBack: () => { inView = true; calm = false; setWiredDepth(st.p, true, false); },
+      onLeave: () => { calm = true; setWiredDepth(1, true, true); }, // past it: the Wired sound stays
+      onLeaveBack: () => { inView = false; calm = false; setWiredDepth(0, false, false); }, // back in reality
     },
     onUpdate: () => {
       const p = st.p;
       scene?.setProgress(p);
+      setWiredDepth(p, inView, calm);
       depth.textContent = String(Math.round(p * 1620)).padStart(4, '0');
       const bars = Math.min(5, 1 + Math.floor(p * 5));
       signal.textContent = '▮'.repeat(bars) + '▯'.repeat(5 - bars);
@@ -67,6 +75,7 @@ export function initWired() {
   tl.to(section.querySelector('.wired__static'), { opacity: 1, duration: 0.035 }, 0.965);
 
   function pulse() {
+    glitchBurst(0.9);
     if (env.reduced || !scene) return;
     gsap.fromTo(scene, { glitch: 0.9 }, { glitch: 0, duration: 0.5, ease: 'power2.out' });
   }
