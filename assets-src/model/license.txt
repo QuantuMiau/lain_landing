@@ -1,0 +1,8 @@
+Model Information:
+* title:	Computer - Serial Experiments Lain
+* source:	https://sketchfab.com/3d-models/computer-serial-experiments-lain-c6250a81ad364d31b6ce221123f627bf
+* author:	sharkie3D (https://sketchfab.com/sharkie3D)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

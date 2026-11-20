@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>serial experiments lain — present day, present time</title>
+  <meta name="description" content="A fan-made landing for serial experiments lain (1998). Thirteen layers. One girl. Everyone is connected." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23050505'/%3E%3Crect x='3' y='3' width='2' height='10' fill='%23e07a96'/%3E%3Crect x='3' y='11' width='8' height='2' fill='%23e07a96'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Share+Tech+Mono&family=Syne+Mono&family=VT323&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/index-B0xfzxVu.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CwjFbxL1.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#layer-01">skip to content</a>
+
+  <!-- ============ BOOT / LOADER ============ -->
+  <div id="boot" class="boot" role="status" aria-live="polite" aria-label="Loading">
+    <div class="boot__screen">
+      <pre class="boot__log" aria-hidden="true"></pre>
+      <div class="boot__progress">
+        <span class="boot__label">connecting to the wired</span>
+        <div class="boot__bar"><i></i></div>
+        <span class="boot__pct">000%</span>
+      </div>
+      <p class="boot__hint">press any key to skip_</p>
+    </div>
+    <div class="boot__flash"></div>
+  </div>
+
+  <!-- ============ TOP BAR (OS) ============ -->
+  <header class="topbar" aria-label="System bar">
+    <div class="topbar__left">
+      <span class="topbar__logo" aria-hidden="true">■</span>
+      <span class="topbar__os">navi<span class="dim">/copland</span></span>
+      <span class="topbar__kana" lang="ja" aria-hidden="true">レイン</span>
+    </div>
+    <nav class="topbar__nav" aria-label="Layers">
+      <a href="#layer-01" data-scramble>01 what</a>
+      <a href="#layer-02" data-scramble>02 wired</a>
+      <a href="#layer-03" data-scramble>03 users</a>
+      <a href="#layer-04" data-scramble>04 ideas</a>
+      <a href="#layer-05" data-scramble>05 layers</a>
+      <a href="#layer-06" data-scramble>06 images</a>
+    </nav>
+    <div class="topbar__right">
+      <span class="topbar__meta hide-sm">user: <b>guest</b></span>
+      <span class="topbar__meta hide-sm">node: <b>0x3A2F</b></span>
+      <span class="topbar__meta"><b class="js-progress">000</b>%<span class="hide-sm"> downloaded</span></span>
+      <time class="topbar__meta js-clock hide-sm">00:00:00</time>
+      <button class="toggle js-sound" type="button" aria-pressed="false">[ sound: off ]</button>
+      <button class="toggle js-crt" type="button" aria-pressed="true">[ crt: on ]</button>
+    </div>
+    <div class="topbar__line" aria-hidden="true"><i class="js-progress-bar"></i></div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <img class="hero__fallback" src="/assets/gif/lain-glitch.gif" alt="" aria-hidden="true" />
+      <div class="hero__ui">
+        <p class="hero__kicker"><span class="blink-dot" aria-hidden="true"></span>present day, present time<span class="dim">&nbsp;·&nbsp;1998</span></p>
+        <h1 id="hero-title" class="hero__title">serial experiments lain</h1>
+        <div class="hero__aside">
+          <p class="hero__lede">Thirteen layers. One girl. A network that remembers you better than you remember yourself.</p>
+          <p class="hero__jp" lang="ja" aria-hidden="true">シリアルエクスペリメンツレイン</p>
+        </div>
+        <a class="hero__scroll" href="#layer-01"><span>&gt; scroll to connect</span><span class="cursor-block" aria-hidden="true">_</span></a>
+      </div>
+      <div class="hero__hex" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ LAYER 01 — WHAT IS LAIN ============ -->
+    <section id="layer-01" class="layer about" data-layer="01" aria-labelledby="about-title">
+      <div class="about__bg" aria-hidden="true">
+        <picture>
+          <source type="image/avif" srcset="/assets/img/wallpapers/wp-01-800.avif 800w, /assets/img/wallpapers/wp-01-1600.avif 1600w" sizes="100vw" />
+          <img src="/assets/img/wallpapers/wp-01-1600.webp" srcset="/assets/img/wallpapers/wp-01-800.webp 800w, /assets/img/wallpapers/wp-01-1600.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async" />
+        </picture>
+      </div>
+      <div class="layer__inner about__grid">
+        <header class="layer__head">
+          <p class="layer__tag">layer:01</p>
+          <h2 id="about-title" class="layer__title">what is lain<span class="caret">?</span></h2>
+        </header>
+        <div class="about__copy">
+          <p data-download>Lain Iwakura is fourteen and barely there. She answers in half sentences, keeps her eyes on her shoes, and has never cared for the machines humming in her father's room. Then a message arrives from Chisa Yomoda, a classmate who jumped from a rooftop days before. Chisa writes that she isn't dead. She just left her body behind. God, she says, is in the Wired.</p>
+          <p data-download>So Lain writes back. She asks for a better NAVI, learns its language, and goes looking. The deeper she connects, the thinner the line becomes between the girl at the keyboard and the girl the network says she is, until no one, Lain included, can say which one is real.</p>
+        </div>
+        <aside class="window about__spec" aria-label="Series information">
+          <div class="window__bar"><span>lain.inf</span><span class="window__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <dl class="spec">
+            <div><dt>year</dt><dd data-download>1998</dd></div>
+            <div><dt>format</dt><dd data-download>13 episodes / "layers"</dd></div>
+            <div><dt>direction</dt><dd data-download>Ryūtarō Nakamura</dd></div>
+            <div><dt>script</dt><dd data-download>Chiaki J. Konaka</dd></div>
+            <div><dt>characters</dt><dd data-download>Yoshitoshi ABe</dd></div>
+            <div><dt>studio</dt><dd data-download>Triangle Staff</dd></div>
+            <div><dt>opening</dt><dd data-download>"Duvet" by Bôa</dd></div>
+          </dl>
+          <p class="spec__foot">&gt; status: <span class="ok">connected</span><span class="cursor-block" aria-hidden="true">_</span></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 02 — THE WIRED (3D) ============ -->
+    <section id="layer-02" class="layer wired" data-layer="02" aria-labelledby="wired-title">
+      <div class="wired__stage">
+        <canvas class="wired__canvas" aria-hidden="true"></canvas>
+        <div class="wired__ui">
+          <header class="layer__head wired__head">
+            <p class="layer__tag">layer:02</p>
+            <h2 id="wired-title" class="layer__title">the wired</h2>
+          </header>
+          <p class="wired__line" data-at="0">the wires hum the same note in every town</p>
+          <p class="wired__line" data-at="1">no matter where you go, everyone's connected</p>
+          <p class="wired__line" data-at="2">the wired is not a place. it is everyone, at once</p>
+          <p class="wired__line" data-at="3">&gt; step inside_</p>
+          <div class="wired__hud" aria-hidden="true">
+            <span>depth <b class="js-depth">0000</b>m</span>
+            <span>signal <b class="js-signal">▮▯▯▯▯</b></span>
+            <span>state <b class="js-state">reality</b></span>
+          </div>
+        </div>
+        <div class="wired__static" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 03 — CHARACTERS ============ -->
+    <section id="layer-03" class="layer users" data-layer="03" aria-labelledby="users-title">
+      <div class="layer__inner">
+        <header class="layer__head">
+          <p class="layer__tag">layer:03</p>
+          <h2 id="users-title" class="layer__title">user files</h2>
+          <p class="layer__sub">eight people the network knows about. some of them know about it too.</p>
+        </header>
+        <ul class="users__grid" role="list"></ul>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 04 — THEMES ============ -->
+    <section id="layer-04" class="layer themes" data-layer="04" aria-labelledby="themes-title">
+      <div class="themes__pin">
+        <header class="layer__head themes__head">
+          <p class="layer__tag">layer:04</p>
+          <h2 id="themes-title" class="layer__title">ideas</h2>
+        </header>
+        <div class="themes__track"></div>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 05 — EPISODES ============ -->
+    <section id="layer-05" class="layer episodes" data-layer="05" aria-labelledby="eps-title">
+      <div class="layer__inner">
+        <header class="layer__head">
+          <p class="layer__tag">layer:05</p>
+          <h2 id="eps-title" class="layer__title">13 layers</h2>
+        </header>
+        <div class="window terminal">
+          <div class="window__bar"><span>/usr/lain/layers: navi-term</span><span class="window__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="terminal__body">
+            <p class="terminal__cmd" aria-hidden="true"><span class="prompt">lain@navi:~$</span> <span class="js-cmd"></span><span class="cursor-block">_</span></p>
+            <p class="terminal__meta" aria-hidden="true">total 13 · drwxr-x--- · protocol 7</p>
+            <ol class="eps" aria-label="Episode list"></ol>
+          </div>
+        </div>
+      </div>
+      <div class="eps__thumb" aria-hidden="true"><img alt="" /></div>
+    </section>
+
+    <!-- ============ LAYER 06 — GALLERY ============ -->
+    <section id="layer-06" class="layer gallery" data-layer="06" aria-labelledby="gal-title">
+      <div class="layer__inner">
+        <header class="layer__head">
+          <p class="layer__tag">layer:06</p>
+          <h2 id="gal-title" class="layer__title">received images</h2>
+          <p class="layer__sub">transferred at 28.8 kbps. please wait.</p>
+        </header>
+        <div class="gallery__cols"></div>
+      </div>
+      <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <canvas class="lightbox__static" aria-hidden="true"></canvas>
+        <div class="lightbox__frame"></div>
+        <button class="lightbox__close toggle" type="button">[ close ]</button>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section id="connect" class="layer cta" data-layer="07" aria-labelledby="cta-title">
+      <div class="cta__inner">
+        <p class="layer__tag">layer:07 / end of transmission</p>
+        <h2 id="cta-title" class="cta__title">close the world,<br /><span aria-hidden="true">open the nE<span class="red">x</span>t</span><span class="sr-only">open the next</span></h2>
+        <a class="cta__btn" href="https://www.justwatch.com/us/search?q=serial%20experiments%20lain" target="_blank" rel="noopener noreferrer">
+          <svg class="cta__border" viewBox="0 0 400 72" preserveAspectRatio="none" aria-hidden="true"><rect x="1" y="1" width="398" height="70" /></svg>
+          <span data-scramble>connect to the wired</span>
+          <span class="cta__btn-sub">where to watch ↗</span>
+        </a>
+      </div>
+      <figure class="cta__watcher" aria-hidden="true">
+        <img src="/assets/gif/lain-glitch.gif" alt="" loading="lazy" width="160" height="151" />
+        <figcaption>she is watching</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="marquee" aria-hidden="true"><div class="marquee__track"></div></div>
+    <div class="footer__inner">
+      <p>A fan site, made with love and no affiliation. <i>serial experiments lain</i> © 1998 Triangle Staff / Pioneer LDC. Artwork belongs to its creators.</p>
+      <p>3D model "Computer – Serial Experiments Lain" by sharkie3D (Sketchfab).</p>
+      <p class="dim">let's all love lain.</p>
+    </div>
+  </footer>
+
+  <!-- global overlays -->
+  <div class="crt" aria-hidden="true"><canvas class="crt__noise"></canvas></div>
+  <div class="glitch-bars" aria-hidden="true"></div>
+  <div class="who" aria-hidden="true"><p>who are you?</p></div>
+  <div class="cursor" aria-hidden="true"><i class="cursor__r"></i><i class="cursor__c"></i><i class="cursor__x"></i></div>
+
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="glitch-filter" x="-5%" y="0" width="110%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0001 0.06" numOctaves="1" seed="3" result="noise" />
+      <feColorMatrix in="noise" type="matrix" values="1 0 0 0 0  0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 1" result="noiseX" />
+      <feDisplacementMap class="gf-disp" in="SourceGraphic" in2="noiseX" scale="0" xChannelSelector="R" yChannelSelector="G" result="disp" />
+      <feColorMatrix in="disp" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red" />
+      <feOffset class="gf-off-r" in="red" dx="0" dy="0" result="redOff" />
+      <feColorMatrix in="disp" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="cyan" />
+      <feOffset class="gf-off-c" in="cyan" dx="0" dy="0" result="cyanOff" />
+      <feBlend in="redOff" in2="cyanOff" mode="screen" />
+    </filter>
+    <filter id="displace-filter" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="turbulence" baseFrequency="0.002 0.09" numOctaves="2" seed="7" result="t" />
+      <feDisplacementMap class="df-disp" in="SourceGraphic" in2="t" scale="0" xChannelSelector="R" yChannelSelector="B" />
+    </filter>
+  </svg>
+
+</body>
+</html>

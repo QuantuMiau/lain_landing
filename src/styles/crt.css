@@ -1,0 +1,81 @@
+/* ---------- global CRT overlay ---------- */
+.crt {
+  position: fixed; inset: 0; z-index: 200; pointer-events: none;
+  transition: opacity 0.4s;
+}
+.crt::before { /* scanlines */
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.28) 2px 3px);
+  animation: crt-flicker 6s steps(1) infinite;
+}
+.crt::after { /* vignette + faint glass curvature */
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025), transparent 30%);
+}
+.crt__noise {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0.045; mix-blend-mode: screen;
+}
+html.crt-off .crt { opacity: 0; }
+@keyframes crt-flicker { 0%, 100% { opacity: 1; } 47% { opacity: 0.86; } 48% { opacity: 1; } }
+
+/* horizontal glitch bars used on section transitions */
+.glitch-bars { position: fixed; inset: 0; z-index: 190; pointer-events: none; overflow: hidden; }
+.glitch-bars i {
+  position: absolute; left: 0; right: 0; display: block;
+  mix-blend-mode: difference; background: var(--bone); opacity: 0;
+}
+
+/* ---------- boot ---------- */
+.boot {
+  position: fixed; inset: 0; z-index: 250;
+  background: var(--bg);
+  display: grid; place-items: stretch;
+}
+.boot__screen {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(20px, 5vw, 64px);
+  font: 400 clamp(17px, 1.6vw, 22px)/1.25 var(--f-term);
+  color: var(--phos);
+  text-shadow: 0 0 6px rgba(60, 255, 158, 0.45);
+  transform-origin: 50% 50%;
+  overflow: hidden;
+}
+.boot__log { margin: 0; font: inherit; white-space: pre-wrap; max-height: 70svh; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+.boot__log .w { color: var(--bone); text-shadow: none; }
+.boot__log .p { color: var(--pink); text-shadow: 0 0 6px rgba(224, 122, 150, 0.4); }
+.boot__progress { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; margin-top: 24px; }
+.boot__bar { height: 12px; border: 1px solid currentColor; padding: 2px; }
+.boot__bar i { display: block; height: 100%; width: 100%; background: currentColor; transform-origin: 0 50%; transform: scaleX(0); }
+.boot__hint { margin-top: 14px; color: var(--dim); text-shadow: none; font-size: 0.85em; }
+.boot__hint.is-gate { color: var(--pink); font-size: 1.15em; text-shadow: 0 0 8px rgba(224, 122, 150, 0.45); }
+.boot__flash { position: absolute; inset: 0; background: var(--bone); opacity: 0; pointer-events: none; }
+@media (max-width: 560px) {
+  .boot__progress { grid-template-columns: 1fr auto; }
+  .boot__label { grid-column: 1 / -1; }
+}
+
+/* ---------- easter egg ---------- */
+.who {
+  position: fixed; inset: 0; z-index: 260; pointer-events: none;
+  display: grid; place-items: center; opacity: 0;
+  background: rgba(5, 5, 5, 0.7);
+}
+.who p {
+  font: 400 clamp(48px, 11vw, 180px)/1 var(--f-display);
+  color: var(--bone);
+  text-shadow: 6px 0 var(--g-r), -6px 0 var(--g-c);
+}
+html.is-who main, html.is-who .footer { animation: who-jitter 0.12s steps(2) infinite; }
+@keyframes who-jitter {
+  0% { transform: translate(0, 0); filter: url(#glitch-filter); }
+  50% { transform: translate(-6px, 2px); }
+  100% { transform: translate(4px, -1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt::before { animation: none; }
+  html.is-who main, html.is-who .footer { animation: none; }
+}
