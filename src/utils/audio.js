@@ -218,6 +218,27 @@ export function glitchBurst(intensity = 1) {
 
 export function isSoundOn() { return on; }
 
+// Mobile browsers only count touchend / click / pointerup as an audio-unlocking gesture
+// (pointerdown and touchstart are not enough, and scrolling never is), so keep trying to
+// resume the context on every such event until it is running.
+// A tiny looping silent <audio> also moves iOS to the "playback" session so the ringer switch doesn't mute us.
+const SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+let silentEl = null;
+function unlock() {
+  if (!ctx) build();
+  if (ctx.state !== 'running') ctx.resume().catch(() => {});
+  if (!silentEl) {
+    silentEl = new Audio(SILENT_WAV);
+    silentEl.loop = true;
+    silentEl.setAttribute('playsinline', '');
+  }
+  silentEl.play().catch(() => {});
+  if (ctx.state === 'running') {
+    ['pointerup', 'touchend', 'click', 'keydown'].forEach((t) => window.removeEventListener(t, unlock, true));
+  }
+}
+['pointerup', 'touchend', 'click', 'keydown'].forEach((t) => window.addEventListener(t, unlock, { capture: true, passive: true }));
+
 /**
  * Must run inside a user gesture (keydown / pointerdown): creates and resumes
  * the AudioContext silently so sound can fade in later without another click.
