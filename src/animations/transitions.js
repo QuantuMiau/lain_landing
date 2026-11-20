@@ -33,8 +33,8 @@ export function glitchElement(el, { strength = 1, duration = 0.38 } = {}) {
 }
 
 /**
- * Every [data-layer] section glitches briefly when entered. The 3D section
- * routes the effect into its own post-processing pass instead.
+ * Tracks the active layer for the top bar. Only the 3D section reacts to entering
+ * (its own post-processing glitch); the rest scroll normally with no distortion.
  */
 export function initSectionGlitches({ onLayer, webglFor } = {}) {
   document.querySelectorAll('[data-layer]').forEach((sec) => {
@@ -44,9 +44,8 @@ export function initSectionGlitches({ onLayer, webglFor } = {}) {
       if (scene) {
         if (env.reduced) return;
         gsap.fromTo(scene, { glitch: 0.8 }, { glitch: 0, duration: 0.45, ease: 'power2.out' });
-      } else {
-        glitchElement(sec.querySelector('.layer__head') || sec);
       }
+      // plain scrolled sections no longer glitch on entry: only the teleports and the 3D scene do
     };
     ScrollTrigger.create({ trigger: sec, start: 'top 60%', end: 'bottom 40%', onEnter: fire, onEnterBack: fire });
   });

@@ -1,6 +1,8 @@
 import gsap from 'gsap';
 import { env, hasWebGL } from '../utils/reducedMotion.js';
 import { setWiredDepth, glitchBurst } from '../utils/audio.js';
+import { isNavigating } from '../animations/scroll.js';
+import { warpTo } from '../animations/warp.js';
 
 /** Pinned 300vh section; scroll progress drives the WebGL camera. */
 export function initWired() {
@@ -33,6 +35,7 @@ export function initWired() {
   const st = { p: 0 };
   let inView = false;
   let calm = false;
+  let leaving = false;
 
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
@@ -43,6 +46,12 @@ export function initWired() {
       end: '+=300%',
       scrub: env.reduced ? true : 0.8,
       anticipatePin: 1,
+      // end of the corridor: the static takes over and a glitch drops you into the next layer (no scroll shown)
+      onUpdate: (self) => {
+        if (env.reduced) return;
+        if (self.progress > 0.985 && self.direction === 1 && !leaving && !isNavigating()) { leaving = true; warpTo(document.querySelector('.thesis')); }
+        else if (self.progress < 0.9) leaving = false;
+      },
       onEnter: () => { inView = true; calm = false; setWiredDepth(st.p, true, false); },
       onEnterBack: () => { inView = true; calm = false; setWiredDepth(st.p, true, false); },
       onLeave: () => { calm = true; setWiredDepth(1, true, true); }, // past it: the Wired sound stays
