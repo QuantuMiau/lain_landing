@@ -56,8 +56,16 @@ export function initCta() {
 
     // the tab opens only once the handshake ends (user activation lasts ~5s, longer than the sequence)
     const go = () => {
-      const tab = window.open(href, '_blank', 'noopener,noreferrer');
-      if (!tab) window.location.assign(href); // blocked: fall back to this tab
+      // window.open with "noopener" always returns null, so it can't be used to detect a blocked popup
+      // (that was sending this page to the link as well). A synthetic link opens the new tab only.
+      const a = document.createElement('a');
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.style.display = 'none';
+      document.body.append(a);
+      a.click();
+      a.remove();
       setTimeout(reset, 900);
     };
 
