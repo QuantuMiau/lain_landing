@@ -4,13 +4,14 @@ import './styles/sections.css';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { initScroll, lockScroll } from './animations/scroll.js';
+import { initScroll, lockScroll, initBlockSnap } from './animations/scroll.js';
 import { runBoot } from './animations/boot.js';
 import { initCursor } from './animations/cursor.js';
 import { initScrambleLinks } from './animations/text.js';
 import { initSectionGlitches } from './animations/transitions.js';
 import { createHero, startHero } from './sections/hero.js';
-import { initAbout } from './sections/about.js';
+import { initAbout, initThesis } from './sections/about.js';
+import { initGate } from './sections/gate.js';
 import { initWired } from './sections/wired.js';
 import { initCharacters } from './sections/characters.js';
 import { initThemes } from './sections/themes.js';
@@ -31,9 +32,11 @@ const hero = createHero();
 
 // 3. build every section in page order (pins must be created top → bottom)
 initAbout();
+initGate({ scene: () => wired.scene });
 const wired = initWired();
-initCharacters();
+initThesis();
 initThemes();
+initCharacters();
 initEpisodes();
 initGallery();
 initCta();
@@ -55,6 +58,7 @@ runBoot().then(() => {
   gsap.to('.topbar', { opacity: 1, duration: 0.6, delay: 0.3 });
   startHero(hero);
   ScrollTrigger.refresh();
+  initBlockSnap();
 });
 
 document.fonts?.ready.then(() => ScrollTrigger.refresh());

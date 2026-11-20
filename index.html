@@ -38,8 +38,8 @@
     <nav class="topbar__nav" aria-label="Layers">
       <a href="#layer-01" data-scramble>01 what</a>
       <a href="#layer-02" data-scramble>02 wired</a>
-      <a href="#layer-03" data-scramble>03 users</a>
-      <a href="#layer-04" data-scramble>04 ideas</a>
+      <a href="#layer-03" data-scramble>03 ideas</a>
+      <a href="#layer-04" data-scramble>04 users</a>
       <a href="#layer-05" data-scramble>05 layers</a>
       <a href="#layer-06" data-scramble>06 images</a>
     </nav>
@@ -63,7 +63,7 @@
         <p class="hero__kicker"><span class="blink-dot" aria-hidden="true"></span>present day, present time<span class="dim">&nbsp;·&nbsp;1998</span></p>
         <h1 id="hero-title" class="hero__title">serial experiments lain</h1>
         <div class="hero__aside">
-          <p class="hero__lede">Thirteen layers. One girl. A network that remembers you better than you remember yourself.</p>
+          <p class="hero__lede">God is in the Wired. Thirteen layers, one girl, and a network that remembers you better than you remember yourself.</p>
           <p class="hero__jp" lang="ja" aria-hidden="true">シリアルエクスペリメンツレイン</p>
         </div>
         <a class="hero__scroll" href="#layer-01"><span>&gt; scroll to connect</span><span class="cursor-block" aria-hidden="true">_</span></a>
@@ -102,6 +102,14 @@
           <p class="spec__foot">&gt; status: <span class="ok">connected</span><span class="cursor-block" aria-hidden="true">_</span></p>
         </aside>
       </div>
+      <div class="gate" aria-labelledby="gate-title">
+        <div class="gate__inner">
+          <p class="gate__tag">&gt; layer:01 complete / signal stable_</p>
+          <h2 id="gate-title" class="gate__title">ready to enter<br />the wired?</h2>
+          <a class="gate__btn" href="#layer-02"><span>[ enter ]</span></a>
+          <p class="gate__hint">or keep scrolling. it will find you anyway.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ============ LAYER 02 — THE WIRED (3D) ============ -->
@@ -127,26 +135,58 @@
       </div>
     </section>
 
-    <!-- ============ LAYER 03 — CHARACTERS ============ -->
-    <section id="layer-03" class="layer users" data-layer="03" aria-labelledby="users-title">
+    <!-- ============ THE IDEA — god, technology, identity (opens layer 03) ============ -->
+    <section class="layer thesis" aria-labelledby="thesis-title">
+      <div class="layer__inner about__grid">
+        <header class="layer__head about__thesis">
+          <p class="layer__tag">layer:03 / the idea</p>
+          <h2 id="thesis-title" class="layer__title about__big"><span class="about__line">god is in</span><br /><span class="about__line">the wired<span class="caret">.</span></span></h2>
+          <p class="about__lede">Lain is one question asked three ways. If a network can hold everyone at once, is it a god? If it holds every version of you, which one is you? And if it can edit what people remember, what is real?</p>
+        </header>
+        <figure class="about__map" aria-label="God, the wired and the self feed each other in a loop">
+          <svg viewBox="0 0 360 330" role="img" aria-hidden="true">
+            <path class="edge" id="e1" d="M180 52 L58 262" />
+            <path class="edge" id="e2" d="M58 262 L302 262" />
+            <path class="edge" id="e3" d="M302 262 L180 52" />
+            <circle class="pulse" r="3.5" />
+            <circle class="pulse" r="3.5" />
+            <circle class="pulse" r="3.5" />
+            <g class="node"><circle cx="180" cy="52" r="7" /><text x="180" y="28" text-anchor="middle">god</text></g>
+            <g class="node"><circle cx="58" cy="262" r="7" /><text x="58" y="294" text-anchor="middle">the wired</text></g>
+            <g class="node"><circle cx="302" cy="262" r="7" /><text x="302" y="294" text-anchor="middle">you</text></g>
+            <text class="elabel" x="96" y="146" text-anchor="end">lives in</text>
+            <text class="elabel" x="180" y="250" text-anchor="middle">rewrites</text>
+            <text class="elabel" x="264" y="146">believes in</text>
+          </svg>
+        </figure>
+        <ul class="about__ideas">
+          <li><h3>technology as god</h3><p data-download>Eiri Masami turns himself into a signal and sets up as the Wired's god. The network can host one because it already behaves like one: everywhere, unseen, and it knows your name.</p></li>
+          <li><h3>identity, copied</h3><p data-download>There is the Lain at home, the Lain at school and the Lain the network talks about. Once every version is believed by someone, no single one is the original.</p></li>
+          <li><h3>reality, edited</h3><p data-download>The Wired doesn't only store memory, it rewrites it. If no one remembers you, you never existed. Lain finds out how little it takes to make that true.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 03 — THEMES ============ -->
+    <section id="layer-03" class="layer themes" data-layer="03" aria-labelledby="themes-title">
+      <div class="themes__pin">
+        <header class="layer__head themes__head">
+          <p class="layer__tag">layer:03</p>
+          <h2 id="themes-title" class="layer__title">ideas</h2>
+        </header>
+        <div class="themes__track"></div>
+      </div>
+    </section>
+
+    <!-- ============ LAYER 04 — CHARACTERS ============ -->
+    <section id="layer-04" class="layer users" data-layer="04" aria-labelledby="users-title">
       <div class="layer__inner">
         <header class="layer__head">
-          <p class="layer__tag">layer:03</p>
+          <p class="layer__tag">layer:04</p>
           <h2 id="users-title" class="layer__title">user files</h2>
           <p class="layer__sub">eight people the network knows about. some of them know about it too.</p>
         </header>
         <ul class="users__grid" role="list"></ul>
-      </div>
-    </section>
-
-    <!-- ============ LAYER 04 — THEMES ============ -->
-    <section id="layer-04" class="layer themes" data-layer="04" aria-labelledby="themes-title">
-      <div class="themes__pin">
-        <header class="layer__head themes__head">
-          <p class="layer__tag">layer:04</p>
-          <h2 id="themes-title" class="layer__title">ideas</h2>
-        </header>
-        <div class="themes__track"></div>
       </div>
     </section>
 
