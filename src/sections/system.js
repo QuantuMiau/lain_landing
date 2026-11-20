@@ -57,25 +57,21 @@ export function initCrtNoise() {
   const g = c.getContext('2d');
   c.width = 384; c.height = 216;
   const img = g.createImageData(c.width, c.height);
-  // pre-render a few noise frames once, then just cycle them (no per-frame pixel loop)
-  const FRAMES = env.mobile ? 1 : 5;
-  const frames = Array.from({ length: FRAMES }, () => {
+  const draw = () => {
     for (let i = 0; i < img.data.length; i += 4) {
       const v = Math.random() * 255;
       img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
       img.data[i + 3] = 255;
     }
-    return new ImageData(new Uint8ClampedArray(img.data), c.width, c.height);
-  });
-  let n = 0;
-  g.putImageData(frames[0], 0, 0);
-  if (env.reduced || env.mobile) return; // static grain on phones: no full-screen repaint
+    g.putImageData(img, 0, 0);
+  };
+  draw();
+  if (env.reduced) return;
   let last = 0;
   gsap.ticker.add((t) => {
-    if (t - last < 0.1 || document.hidden || document.documentElement.classList.contains('crt-off')) return;
+    if (t - last < 0.08 || document.documentElement.classList.contains('crt-off')) return;
     last = t;
-    n = (n + 1 + Math.floor(Math.random() * (FRAMES - 1))) % FRAMES;
-    g.putImageData(frames[n], 0, 0);
+    draw();
   });
 }
 

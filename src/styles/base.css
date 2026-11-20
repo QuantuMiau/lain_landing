@@ -78,8 +78,9 @@ ul, ol { padding: 0; list-style: none; }
   padding: 0 var(--gutter);
   font: 400 18px/1 var(--f-term);
   color: var(--dim);
-  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.94), rgba(5, 5, 5, 0.72));
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.92), rgba(5, 5, 5, 0.6));
   border-bottom: 1px solid var(--faint);
+  backdrop-filter: blur(3px);
   opacity: 0;
 }
 .topbar b { color: var(--bone); font-weight: 400; }

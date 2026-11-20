@@ -16,7 +16,7 @@
 }
 .crt__noise {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  opacity: 0.045; /* plain alpha: a blend mode here forces a full-screen recomposite */
+  opacity: 0.045; mix-blend-mode: screen;
 }
 html.crt-off .crt { opacity: 0; }
 @keyframes crt-flicker { 0%, 100% { opacity: 1; } 47% { opacity: 0.86; } 48% { opacity: 1; } }

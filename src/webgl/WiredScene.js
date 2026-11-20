@@ -429,10 +429,8 @@ export class WiredScene extends Scene {
       look.set(out.x * 0.4, lerp(5.5, this.screenCenter.y, t), z - 22);
     } else {
       const t = easeInOut((p - RUN_END) / (1 - RUN_END));
-      const start = (this._camStart ||= new THREE.Vector3());
-      const end = (this._camEnd ||= new THREE.Vector3());
-      start.set(0, 2.6, END_Z + 24);
-      end.copy(this.screenCenter).z += 1.2; // reused vectors: no per-frame allocation
+      const start = new THREE.Vector3(0, 2.6, END_Z + 24);
+      const end = this.screenCenter.clone().add(new THREE.Vector3(0, 0, 1.2));
       out.lerpVectors(start, end, t);
       look.copy(this.screenCenter);
     }

@@ -12,8 +12,6 @@ let on = false;
 const W = {};
 let wiredP = 0;
 let wiredActive = false;
-let lastApply = 0;
-let trailing = 0;
 let wiredCalm = false; // scrolled past the section: keep the Wired sound, drop the closing static
 
 function build() {
@@ -151,12 +149,7 @@ function applyWired(immediate = false) {
   const p = wiredActive ? wiredP : 0;
   const t = ctx.currentTime;
   const k = immediate ? 0.01 : 0.18; // smoothing time constant
-  // clear the old automation first: stacking ~12 setTargetAtTime events per frame slows the audio thread
-  const set = (param, v, tc = k) => {
-    param.cancelScheduledValues(t);
-    param.setValueAtTime(param.value, t);
-    param.setTargetAtTime(v, t, tc);
-  };
+  const set = (param, v, tc = k) => param.setTargetAtTime(v, t, tc);
 
   const cross = ss(p, 0.24, 0.3) * (1 - ss(p, 0.3, 0.45)); // bell around the crossing
   const wired = ss(p, 0.27, 0.45); // reality fades out as the drone takes over
@@ -185,19 +178,10 @@ function applyWired(immediate = false) {
  * p = 0..1 scroll progress, active = whether the section is on screen.
  */
 export function setWiredDepth(p, active = true, calm = false) {
-  const same = active === wiredActive && calm === wiredCalm;
-  if (same && Math.abs(p - wiredP) < 0.004) return; // ignore tiny scroll steps
+  if (p === wiredP && active === wiredActive && calm === wiredCalm) return;
   wiredP = p;
   wiredActive = active;
   wiredCalm = calm;
-  const now = performance.now();
-  if (same && now - lastApply < 50) { // at most ~20 updates per second; make sure the last one still lands
-    clearTimeout(trailing);
-    trailing = setTimeout(() => { lastApply = performance.now(); applyWired(); }, 60);
-    return;
-  }
-  clearTimeout(trailing);
-  lastApply = now;
   applyWired();
 }
 
@@ -233,27 +217,6 @@ export function glitchBurst(intensity = 1) {
 }
 
 export function isSoundOn() { return on; }
-
-// Mobile browsers only count touchend / click / pointerup as an audio-unlocking gesture
-// (pointerdown and touchstart are not enough, and scrolling never is), so keep trying to
-// resume the context on every such event until it is running.
-// A tiny looping silent <audio> also moves iOS to the "playback" session so the ringer switch doesn't mute us.
-const SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
-let silentEl = null;
-function unlock() {
-  if (!ctx) build();
-  if (ctx.state !== 'running') ctx.resume().catch(() => {});
-  if (!silentEl) {
-    silentEl = new Audio(SILENT_WAV);
-    silentEl.loop = true;
-    silentEl.setAttribute('playsinline', '');
-  }
-  silentEl.play().catch(() => {});
-  if (ctx.state === 'running') {
-    ['pointerup', 'touchend', 'click', 'keydown'].forEach((t) => window.removeEventListener(t, unlock, true));
-  }
-}
-['pointerup', 'touchend', 'click', 'keydown'].forEach((t) => window.addEventListener(t, unlock, { capture: true, passive: true }));
 
 /**
  * Must run inside a user gesture (keydown / pointerdown): creates and resumes

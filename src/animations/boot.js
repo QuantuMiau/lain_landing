@@ -36,8 +36,8 @@ export function runBoot() {
   // --- user gesture: lets the AudioContext start silently during boot ---
   let gestured = false;
   const onGesture = () => { gestured = true; primeAudio(); };
-  const GESTURES = ['keydown', 'pointerup', 'touchend', 'click']; // touchend/click: the ones mobile counts for audio
-  GESTURES.forEach((t) => window.addEventListener(t, onGesture, { once: true }));
+  window.addEventListener('keydown', onGesture, { once: true });
+  window.addEventListener('pointerdown', onGesture, { once: true });
 
   // --- progress = min(real loading, typed log) ---
   let real = 0;
@@ -100,16 +100,18 @@ export function runBoot() {
     if (gestured) return resolve();
     canAutoplay().then((ok) => {
       if (ok || gestured) return resolve();
-      hint.innerHTML = `&gt; ${env.mobile ? 'tap' : 'press any key or click'} to connect<span class="cursor-block">_</span>`;
+      hint.innerHTML = '&gt; press any key or click to connect<span class="cursor-block">_</span>';
       hint.classList.add('is-gate');
       const go = () => { onGesture(); resolve(); };
-      GESTURES.forEach((t) => window.addEventListener(t, go, { once: true }));
+      window.addEventListener('keydown', go, { once: true });
+      window.addEventListener('pointerdown', go, { once: true });
     });
   });
 
   return Promise.all([loadedP, typedP]).then(gateP).then(() => new Promise((resolve) => {
     window.removeEventListener('keydown', skip);
-    GESTURES.forEach((t) => window.removeEventListener(t, onGesture));
+    window.removeEventListener('keydown', onGesture);
+    window.removeEventListener('pointerdown', onGesture);
     setSound(true); // fades in as the hero appears
     if (env.reduced) {
       gsap.to(root, { autoAlpha: 0, duration: 0.6, onComplete: () => { root.remove(); resolve(); } });
