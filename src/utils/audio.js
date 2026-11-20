@@ -241,7 +241,7 @@ export async function setSound(next) {
   if (ctx.state === 'suspended') await ctx.resume();
   if (fileEl) on ? fileEl.play().catch(() => {}) : fileEl.pause();
   master.gain.cancelScheduledValues(ctx.currentTime);
-  master.gain.setTargetAtTime(on ? 0.5 : 0, ctx.currentTime, on ? 0.9 : 0.35);
+  master.gain.setTargetAtTime(on ? 0.65 : 0, ctx.currentTime, on ? 0.9 : 0.35);
   window.dispatchEvent(new CustomEvent('lain:sound', { detail: on }));
 }
 
@@ -253,7 +253,7 @@ export function click(freq = 1900) {
   const g = ctx.createGain();
   o.type = 'square';
   o.frequency.setValueAtTime(freq, t);
-  g.gain.setValueAtTime(0.06, t);
+  g.gain.setValueAtTime(0.078, t);
   g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
   o.connect(g).connect(ctx.destination);
   o.start(t);
