@@ -62,7 +62,7 @@ export function runBoot() {
 
   // --- typed log ---
   const tl = createTimeline({ autoplay: true, onUpdate: (self) => { typed = self.progress; render(); } });
-  const speed = env.reduced ? 0.3 : 1;
+  const speed = env.reduced ? 0.2 : 0.48;
   LINES.forEach(([text, cls]) => {
     const row = document.createElement('span');
     row.className = cls;
@@ -86,7 +86,7 @@ export function runBoot() {
       ease: 'linear',
       modifier: Math.round,
       onUpdate: () => { row.textContent = text.slice(0, o.n); },
-    }, '+=90');
+    }, '+=42');
   });
   const typedP = tl.then(() => { typed = 1; render(); });
 
@@ -118,7 +118,7 @@ export function runBoot() {
       return;
     }
     // single flash + CRT power-off collapse revealing the hero
-    const out = gsap.timeline({ delay: 0.25, onComplete: () => { root.remove(); resolve(); } });
+    const out = gsap.timeline({ delay: 0.1, onComplete: () => { root.remove(); resolve(); } });
     out
       .to(flash, { opacity: 0.85, duration: 0.06, ease: 'none' })
       .to(screen, { x: () => gsap.utils.random(-14, 14), skewX: 8, duration: 0.05, repeat: 3, yoyo: true, ease: 'steps(1)' }, '<')
